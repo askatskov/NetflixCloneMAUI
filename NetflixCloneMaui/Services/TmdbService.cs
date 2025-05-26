@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+using NetflixCloneMaui.Models;
 
-
-namespace NetflixCloneMAUI.Services
+namespace NetflixCloneMaui.Services
 {
     public class TmdbService
     {
@@ -23,7 +23,7 @@ namespace NetflixCloneMAUI.Services
 
         public async Task<IEnumerable<Genre>> GetGenresAsync()
         {
-            var genresWrapper = await HttpClient.GetFromJsonAsync<GenreWrapper>($"{TmdbUrls.MovieGenres}&api_key={ApiKey}"));
+            var genresWrapper = await HttpClient.GetFromJsonAsync<GenreWrapper>($"{TmdbUrls.MovieGenres}&api_key={ApiKey}");
             return genresWrapper.Genres;
         }
 
