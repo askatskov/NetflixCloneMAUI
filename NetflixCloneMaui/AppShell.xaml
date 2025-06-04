@@ -13,25 +13,25 @@
     <TabBar>
         <ShellContent
             Title="Home"
-            Icon="hometab"
+            Icon="hometab.png"
             ContentTemplate="{DataTemplate pages:MainPage}"
             Route="MainPage" />
 
         <ShellContent
             Title="Games"
-            Icon="game"
+            Icon="game.png"
             ContentTemplate="{DataTemplate pages:MainPage}"
             Route="MainPage" />
 
         <ShellContent
             Title="New &amp; Hot"
-            Icon="brand_netflix"
+            Icon="brand_netflix.png"
             ContentTemplate="{DataTemplate pages:MainPage}"
             Route="MainPage" />
 
         <ShellContent
             Title="Downloads"
-            Icon="download"
+            Icon="download.png"
             ContentTemplate="{DataTemplate pages:MainPage}"
             Route="MainPage" />
 

@@ -65,13 +65,13 @@ namespace NetflixCloneMaui.ViewModels
             //SelectedMedia == TrendingMovie;
         }
 
-        private void SetMediaCollection(IEnumerable<Media> medias, ObservableCollection<Media> collection)
-        {
-            collection.Clear();
-            foreach (var media in medias)
-            {
-                collection.Add(media);
-            }
-        }
-    }
+		private void SetMediaCollection(IEnumerable<Media> medias, ObservableCollection<Media> collection)
+		{
+			collection.Clear();
+			foreach (var media in medias)
+			{
+				collection.Add(media);
+			}
+		}
+	}
 }

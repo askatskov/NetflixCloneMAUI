@@ -131,7 +131,6 @@
                 </HorizontalStackLayout>
             </FlexLayout>
         </Grid>
-
     </Grid>
 
 </ContentPage>

@@ -1,10 +1,11 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              x:Class="Controls.MovieInfoBox"
-             xmlns:models="clr-namespace:NetflixCloneMaui.Models"
+             x:Class="Controls.MovieInfoBox"
              xmlns:controls="clr-namespace:NetflixCloneMaui.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Name="this"
-             Padding="0">
+             Padding="0"
+             Margin="0">
 
     <ContentView.Resources>
         <ResourceDictionary>
@@ -32,14 +33,13 @@
             StrokeShape="RoundRectangle 10, 10, 0, 0"
             StrokeThickness="0"
             BackgroundColor="#2b2b2b"
+            Margin="0"
             Padding="0">
-
         <VerticalStackLayout>
             <Grid RowDefinitions="Auto, Auto, Auto"
                   ColumnDefinitions="120, *"
                   Padding="10"
                   ColumnSpacing="10">
-
                 <Border Grid.Column="0"
                         Grid.RowSpan="3"
                         HeightRequest="150"
@@ -52,7 +52,7 @@
                            HeightRequest="150"
                            WidthRequest="120">
                         <Image.Source>
-                            <UriImageSource Uri="{Binding Media.Thumbnail}" />
+                            <UriImageSource Uri="{Binding Media.Thumbnail}"/>
                         </Image.Source>
                     </Image>
                 </Border>
@@ -62,7 +62,7 @@
                       ColumnDefinitions="*, Auto">
                     <Label Grid.Column="0"
                            Text="{Binding Media.DisplayTitle, FallbackValue='Movie Title'}"
-                           FontSize="17" />
+                           FontSize="17"/>
                     <Button Grid.Column="1"
                             Text="X"
                             FontSize="17"
@@ -72,40 +72,87 @@
                             HeightRequest="25"
                             WidthRequest="25"
                             CornerRadius="10"
-                            Padding="0" />
+                            Padding="0"/>
                 </Grid>
-                
+
                 <Label Grid.Row="1"
                        Grid.Column="1"
                        Text="{Binding Media.ReleaseDate}"
                        FontSize="10"
-                       TextColor="#9d9d9d" />
+                       TextColor="#9d9d9d"/>
+
                 <Label Grid.Row="2"
                        Grid.Column="1"
                        Text="{Binding Media.Overview}"
                        FontSize="11"
-                       MaxLines="4" />
+                       MaxLines="4"/>
             </Grid>
+
             <Grid ColumnDefinitions="*, *, *, *"
                   Margin="0, 20, 0, 5">
-                <Grid Grid.Column="0"
-                      RowDefinitions="Auto, Auto"
-                      HorizontalOptions="Center"
-                      VerticalOptions="Center">
-                    <Ellipse HeightRequest="25"
-                             WidthRequest="25"
-                             Fill="#3c3c3c"
-                             HorizontalOptions="Center"
-                             VerticalOptions="Center" />
-                    <Image Source="play.png"
-                           HeightRequest="20"
-                           WidthRequest="20"
-                           Aspect="AspectFill"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" />
+                <Grid Grid.Column="0" 
+                      RowDefinitions="Auto, Auto">
+                    <Ellipse Style="{StaticResource iconBg}"/>
+                    <Image Source="play"
+                           Style="{StaticResource iconImg}">
+                        <!--<Image.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="White" />
+                        </Image.Behaviors>-->
+                    </Image>
+                    <Label Grid.Row="1"
+                           Text="Play"
+                           Style="{StaticResource iconBtnText}"/>
                 </Grid>
 
+                <Grid Grid.Column="0" 
+                      RowDefinitions="Auto, Auto">
+                    <Ellipse Style="{StaticResource iconBg}"/>
+                    <Image Source="download.png"
+                            Style="{StaticResource iconImg}">
+                    </Image>
+                    <Label Grid.Row="1"
+                            Text="Download"
+                            Style="{StaticResource iconBtnText}"/>
+                </Grid>
+
+                <Grid Grid.Column="0" 
+                        RowDefinitions="Auto, Auto">
+                    <Ellipse Style="{StaticResource iconBg}"/>
+                    <Image Source="share.png"
+                                Style="{StaticResource iconImg}">
+                    </Image>
+                    <Label Grid.Row="1"
+                            Text="Share"
+                            Style="{StaticResource iconBtnText}"/>
+                </Grid>
             </Grid>
+
+            <BoxView HeightRequest="2"
+                     BackgroundColor="#9d9d9d"
+                     Color="#9d9d9d"
+                     Margin="5,0"/>
+
+            <Grid ColumnDefinitions="Auto, *, Auto"
+                  Padding="15"
+                  ColumnSpacing="5">
+                <Grid Grid.Column="0">
+                    <Ellipse Stroke="White"
+                             HeightRequest="22"
+                             WidthRequest="22"
+                             StrokeThickness="2"/>
+                    <Label Text="i"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           FontAttributes="Bold"/>
+                </Grid>
+
+                <Label Grid.Column="1"
+                       Text="Details &amp; More"/>
+
+                <Label Grid.Column="2"
+                       Text=">"/>
+            </Grid>
+
         </VerticalStackLayout>
     </Border>
 </ContentView>
