@@ -1,7 +1,7 @@
 using NetflixCloneMaui.Models;
 using System.Windows.Input;
 
-namespace Controls;
+namespace NetflixCloneMaui.Controls;
 
 public partial class MovieInfoBox : ContentView
 {
@@ -32,5 +32,9 @@ public partial class MovieInfoBox : ContentView
 	private void Button_Clicked(object sender, EventArgs e)
 	{
 		Closed?.Invoke(this, EventArgs.Empty);
+	}
+	private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+	{
+
 	}
 }

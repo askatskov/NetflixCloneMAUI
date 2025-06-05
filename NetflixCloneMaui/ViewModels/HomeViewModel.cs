@@ -75,6 +75,16 @@ namespace NetflixCloneMaui.ViewModels
 			}
 		}
 		[RelayCommand]
-		private void SelectMedia(Media? media = null) => selectedMedia = media;
+		private void SelectMedia(Media? media = null)
+		{
+			if (media is not null)
+			{
+				if (media.Id == SelectedMedia?.Id)
+				{
+					media = null;
+				}
+			}
+			SelectedMedia = media;
+		}
 	}
 }

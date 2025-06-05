@@ -32,6 +32,10 @@ public static class MauiProgram
         builder.Services.AddSingleton<MainPage>();
 		builder.Services.AddSingleton<HomeViewModel>();
 
-        return builder.Build();
+		builder.Services.AddSingleton<CategoriesPage>();
+		builder.Services.AddSingleton<CategoriesViewModel>();
+
+		builder.Services.AddTransientWithShellRoute<DetailsPage, DetailsViewModel>(nameof(DetailsPage));
+		return builder.Build();
 	}
 }
