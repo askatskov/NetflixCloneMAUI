@@ -1,11 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using NetflixCloneMaui.Models;
 using NetflixCloneMaui.Services;
+using System.Collections.ObjectModel;
 
 namespace NetflixCloneMaui.ViewModels
 {
 	[QueryProperty(nameof(Media), nameof(Media))]
-
 	public partial class DetailsViewModel : ObservableObject
 	{
 		private readonly TmdbService _tmdbService;
@@ -13,7 +13,6 @@ namespace NetflixCloneMaui.ViewModels
 		public DetailsViewModel(TmdbService tmdbService)
 		{
 			_tmdbService = tmdbService;
-
 		}
 
 		[ObservableProperty]
@@ -27,6 +26,8 @@ namespace NetflixCloneMaui.ViewModels
 
 		[ObservableProperty]
 		private bool _isBusy;
+
+		public ObservableCollection<Video> Videos { get; set; } = new();
 
 		public async Task InitializeAsync()
 		{
@@ -44,6 +45,11 @@ namespace NetflixCloneMaui.ViewModels
 					var trailer = trailerTeasers.FirstOrDefault(t => t.type == "Trailer");
 					trailer ??= trailerTeasers.First();
 					MainTrailerUrl = GenerateYoutubeUrl(trailer.key);
+
+					foreach (var video in trailerTeasers)
+					{
+						Videos.Add(video);
+					}
 				}
 				else
 				{
