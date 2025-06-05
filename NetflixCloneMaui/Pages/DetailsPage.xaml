@@ -39,202 +39,208 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-
-    <ScrollView BackgroundColor="Black">
-        <Grid>
-            <ActivityIndicator Color="White"
+    <ScrollView BackgroundColor="Black"
+                x:Name="pageScrollView">
+            <Grid>
+                <ActivityIndicator Color="White"
                                VerticalOptions="Center"
                                HorizontalOptions="Center"
                                HeightRequest="50"
                                WidthRequest="50"
                                IsRunning="{Binding IsBusy}"/>
 
-            <VerticalStackLayout IsVisible="False">
-                <VerticalStackLayout.Triggers>
-                    <DataTrigger TargetType="VerticalStackLayout" 
+                <VerticalStackLayout IsVisible="False">
+                    <VerticalStackLayout.Triggers>
+                        <DataTrigger TargetType="VerticalStackLayout" 
                                  Binding="{Binding IsBusy}"
                                  Value="False">
-                        <Setter Property="IsVisible" Value="True"/>
-                    </DataTrigger>
-                </VerticalStackLayout.Triggers>
+                            <Setter Property="IsVisible" Value="True"/>
+                        </DataTrigger>
+                    </VerticalStackLayout.Triggers>
 
-                <WebView Source="{Binding MainTrailerUrl}"
+                    <WebView Source="{Binding MainTrailerUrl}"
                          HeightRequest="250"/>
 
-                <VerticalStackLayout Padding="5"
+                    <VerticalStackLayout Padding="5"
                                      Spacing="10"
                                      Margin="0, 15, 0, 0">
-                    <Label Text="{Binding Media.DisplayTitle}"
+                        <Label Text="{Binding Media.DisplayTitle}"
                            FontSize="18"
                            FontAttributes="Bold"/>
 
-                    <HorizontalStackLayout Spacing="15">
-                        <Label Text="{Binding Media.ReleaseDate}"
+                        <HorizontalStackLayout Spacing="15">
+                            <Label Text="{Binding Media.ReleaseDate}"
                                Style="{x:StaticResource sub}"/>
-                        <Label Text="{Binding Runtime, StringFormat='{0} minutes'}"
+                            <Label Text="{Binding Runtime, StringFormat='{0} minutes'}"
                                Style="{x:StaticResource sub}"/>
-                    </HorizontalStackLayout>
+                        </HorizontalStackLayout>
 
-                    <Button Text="Play" 
+                        <Button Text="Play" 
                             BackgroundColor="White"
                             TextColor="Black"
                             Style="{x:StaticResource btn}"/>
 
-                    <Button Text="Download" 
+                        <Button Text="Download" 
                             BackgroundColor="Gray"
                             Style="{x:StaticResource btn}"/>
 
-                    <Label Text="{Binding Media.Overview}"
+                        <Label Text="{Binding Media.Overview}"
                            FontSize="13"/>
 
-                    <Grid ColumnDefinitions="*, *, *">
-                        <VerticalStackLayout HorizontalOptions="Center"
+                        <Grid ColumnDefinitions="*, *, *">
+                            <VerticalStackLayout HorizontalOptions="Center"
                                              Grid.Column="0">
-                            <Image Source="plus"
+                                <Image Source="plus"
                                    Style="{x:StaticResource imgbtn}">
-                                <Image.Behaviors>
-                                    <toolkit:IconTintColorBehavior TintColor="White" />
-                                </Image.Behaviors>
-                            </Image>
-                            <Label Text="My List"
+                                    <Image.Behaviors>
+                                        <toolkit:IconTintColorBehavior TintColor="White" />
+                                    </Image.Behaviors>
+                                </Image>
+                                <Label Text="My List"
                                    Style="{x:StaticResource btntext}"/>
-                        </VerticalStackLayout>
-                        <VerticalStackLayout HorizontalOptions="Center"
+                            </VerticalStackLayout>
+                            <VerticalStackLayout HorizontalOptions="Center"
                                              Grid.Column="1">
-                            <Image Source="rate"
+                                <Image Source="rate"
                                    Style="{x:StaticResource imgbtn}">
-                                <Image.Behaviors>
-                                    <toolkit:IconTintColorBehavior TintColor="White" />
-                                </Image.Behaviors>
-                            </Image>
-                            <Label Text="Rate"
+                                    <Image.Behaviors>
+                                        <toolkit:IconTintColorBehavior TintColor="White" />
+                                    </Image.Behaviors>
+                                </Image>
+                                <Label Text="Rate"
                                    Style="{x:StaticResource btntext}"/>
-                        </VerticalStackLayout>
-                        <VerticalStackLayout HorizontalOptions="Center"
+                            </VerticalStackLayout>
+                            <VerticalStackLayout HorizontalOptions="Center"
                                              Grid.Column="2">
-                            <Image Source="share"
+                                <Image Source="share"
                                    Style="{x:StaticResource imgbtn}">
-                                <Image.Behaviors>
-                                    <toolkit:IconTintColorBehavior TintColor="White" />
-                                </Image.Behaviors>
-                            </Image>
-                            <Label Text="Share"
+                                    <Image.Behaviors>
+                                        <toolkit:IconTintColorBehavior TintColor="White" />
+                                    </Image.Behaviors>
+                                </Image>
+                                <Label Text="Share"
                                    Style="{x:StaticResource btntext}"/>
-                        </VerticalStackLayout>
-                    </Grid>
+                            </VerticalStackLayout>
+                        </Grid>
 
-                </VerticalStackLayout>
+                    </VerticalStackLayout>
 
-                <VerticalStackLayout Margin="5">
-                    <BoxView HeightRequest="2" />
+                    <VerticalStackLayout Margin="5">
+                        <BoxView HeightRequest="2" />
 
-                    <Grid RowDefinitions="Auto, Auto"
+                        <Grid RowDefinitions="Auto, Auto"
                           ColumnDefinitions="Auto, Auto"
                           ColumnSpacing="15">
 
-                        <VerticalStackLayout Grid.Row="0"
+                            <VerticalStackLayout Grid.Row="0"
                                              Grid.Column="0">
-                            <BoxView HeightRequest="4"
+                                <BoxView HeightRequest="4"
                                      Color="Red"
                                      x:Name="trailersTabIndicator"/>
 
-                            <Label Text="Trailers &amp; More"
+                                <Label Text="Trailers &amp; More"
                                    Style="{x:StaticResource tabtitle}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TrailersTab_Tapped"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </VerticalStackLayout>
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TrailersTab_Tapped"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </VerticalStackLayout>
 
-                        <VerticalStackLayout Grid.Row="0"
+                            <VerticalStackLayout Grid.Row="0"
                                              Grid.Column="1">
-                            <BoxView HeightRequest="4"
+                                <BoxView HeightRequest="4"
                                      Color="Black"
                                      x:Name="similarTabIndicator"/>
 
-                            <Label Text="More Like This"
+                                <Label Text="More Like This"
                                    Style="{x:StaticResource tabtitle}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="SimilarTab_Tapped"/>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </VerticalStackLayout>
-                    </Grid>
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="SimilarTab_Tapped"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </VerticalStackLayout>
+                        </Grid>
 
-                </VerticalStackLayout>
+                    </VerticalStackLayout>
 
-                <Border BackgroundColor="Black"
+                    <Border BackgroundColor="Black"
                         StrokeThickness="0"
                         x:Name="trailersTabContent">
 
-                    <CollectionView ItemsSource="{Binding Videos}">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="services:Video">
-                                <Grid RowDefinitions="250, Auto"
+                        <CollectionView ItemsSource="{Binding Videos}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="services:Video">
+                                    <Grid RowDefinitions="250, Auto"
                                       Padding="10"
                                       RowSpacing="5">
-                                    <Border Grid.Row="0"
+                                        <Border Grid.Row="0"
                                             StrokeShape="RoundRectangle 5"
                                             StrokeThickness="0"
                                             Opacity="0.8">
-                                        <Image Aspect="AspectFill">
-                                            <Image.Source>
-                                                <UriImageSource Uri="{Binding Thumbnail}"/>
-                                            </Image.Source>
-                                        </Image>
-                                    </Border>
+                                            <Image Aspect="AspectFill">
+                                                <Image.Source>
+                                                    <UriImageSource Uri="{Binding Thumbnail}"/>
+                                                </Image.Source>
+                                            </Image>
+                                        </Border>
 
-                                    <Border Grid.Row="0"
+                                        <Border Grid.Row="0"
                                             VerticalOptions="Center"
                                             HorizontalOptions="Center"
                                             BackgroundColor="#DDD"
                                             HeightRequest="50"
                                             WidthRequest="50"
                                             StrokeShape="RoundRectangle 25">
-                                        <Image Source="play"
+                                            <Image Source="play"
                                                VerticalOptions="Center"
                                                HorizontalOptions="Center"
                                                Aspect="AspectFit"/>
-                                    </Border>
+                                        </Border>
 
-                                    <Label Grid.Row="1" 
+                                        <Label Grid.Row="1" 
                                            Text="{Binding name}" />
-                                </Grid>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:DetailsViewModel}}, Path=SetMainTrailerCommand}"
+                                                              CommandParameter="{Binding key}"
+                                                              Tapped="TapGestureRecognizer_Tapped"/>
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
 
-                </Border>
+                    </Border>
 
-                <Border BackgroundColor="Black"
+                    <Border BackgroundColor="Black"
                         StrokeThickness="0"
                         IsVisible="False"
                         x:Name="similarTabContent">
-                    <FlexLayout BindableLayout.ItemsSource="{Binding Similar}"
+
+                        <FlexLayout BindableLayout.ItemsSource="{Binding Similar}"
                                 Wrap="Wrap"
                                 JustifyContent="SpaceBetween">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate x:DataType="models:Media">
-                                <Border StrokeShape="RoundRectangle 4"
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="models:Media">
+                                    <Border StrokeShape="RoundRectangle 4"
                                         BackgroundColor="Black"
                                         StrokeThickness="0"
                                         HeightRequest="135"
                                         WidthRequest="{Binding Source={x:RelativeSource AncestorType={x:Type vm:DetailsViewModel}}, Path=SimilarItemWidth}"
                                         Margin="0, 0, 0, 5">
-                                    <Image Source="{Binding ThumbnailSmall}"
+                                        <Image Source="{Binding ThumbnailSmall}"
                                            Aspect="Fill"/>
-                                    <Border.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:DetailsViewModel}}, Path=ChangeToThisMediaCommand}"
+                                        <Border.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:DetailsViewModel}}, Path=ChangeToThisMediaCommand}"
                                                               CommandParameter="{Binding .}"/>
-                                    </Border.GestureRecognizers>
-                                </Border>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </FlexLayout>
+                                        </Border.GestureRecognizers>
+                                    </Border>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </FlexLayout>
 
-                </Border>
+                    </Border>
 
-            </VerticalStackLayout>
-        </Grid>
-    </ScrollView>
+                </VerticalStackLayout>
+            </Grid>
+        </ScrollView>
 </ContentPage>

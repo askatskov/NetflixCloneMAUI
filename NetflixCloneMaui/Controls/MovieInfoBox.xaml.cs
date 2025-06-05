@@ -1,4 +1,6 @@
 using NetflixCloneMaui.Models;
+using NetflixCloneMaui.Pages;
+using NetflixCloneMaui.ViewModels;
 using System.Windows.Input;
 
 namespace NetflixCloneMaui.Controls;
@@ -14,27 +16,27 @@ public partial class MovieInfoBox : ContentView
 	{
 		InitializeComponent();
 		ClosedCommand = new Command(ExecuteClosedCommand);
-	}
 
+	}
 	public Media Media
 	{
-		get => (Media)GetValue(MediaProperty);
-		set => SetValue(MediaProperty, value);
+		get => (Media)GetValue(MovieInfoBox.MediaProperty);
+		set => SetValue(MovieInfoBox.MediaProperty, value);
 	}
 
 	public ICommand ClosedCommand { get; private set; }
-
-	private void ExecuteClosedCommand()
-	{
+	private void ExecuteClosedCommand() =>
 		Closed?.Invoke(this, EventArgs.Empty);
-	}
 
-	private void Button_Clicked(object sender, EventArgs e)
-	{
+	private void Button_Clicked(object sender, EventArgs e) =>
 		Closed?.Invoke(this, EventArgs.Empty);
-	}
+
 	private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
 	{
-
+		var parameters = new Dictionary<string, object>
+		{
+			[nameof(DetailsViewModel.Media)] = Media
+		};
+		await Shell.Current.GoToAsync(nameof(DetailsPage), true, parameters);
 	}
 }

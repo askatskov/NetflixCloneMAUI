@@ -35,7 +35,7 @@
             BackgroundColor="#2b2b2b"
             Margin="0"
             Padding="0">
-        <VerticalStackLayout>
+        <VerticalStackLayout Padding="0">
             <Grid RowDefinitions="Auto, Auto, Auto"
                   ColumnDefinitions="120, *"
                   Padding="10"
@@ -72,7 +72,7 @@
                             VerticalOptions="Start"
                             HeightRequest="25"
                             WidthRequest="25"
-                            CornerRadius="10"
+                            CornerRadius="25"
                             Padding="0"
                             Margin="5"
                             Command="{Binding ClosedCommand}"
@@ -90,64 +90,87 @@
                        Text="{Binding Media.Overview}"
                        FontSize="11"
                        MaxLines="4"/>
+
             </Grid>
 
             <Grid ColumnDefinitions="*, *, *, *"
                   Margin="0, 20, 0, 5">
+
                 <Grid Grid.Column="0" 
                       RowDefinitions="Auto, Auto">
                     <Ellipse Style="{StaticResource iconBg}"/>
                     <Image Source="play"
                            Style="{StaticResource iconImg}">
-                        <!--<Image.Behaviors>
+                        <Image.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="White" />
-                        </Image.Behaviors>-->
+                        </Image.Behaviors>
                     </Image>
                     <Label Grid.Row="1"
                            Text="Play"
                            Style="{StaticResource iconBtnText}"/>
                 </Grid>
 
-                <Grid Grid.Column="0" 
+                <Grid Grid.Column="1" 
                       RowDefinitions="Auto, Auto">
                     <Ellipse Style="{StaticResource iconBg}"/>
-                    <Image Source="download.png"
-                            Style="{StaticResource iconImg}">
+                    <Image Source="download"
+                           Style="{StaticResource iconImg}">
+                        <Image.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="White" />
+                        </Image.Behaviors>
                     </Image>
                     <Label Grid.Row="1"
-                            Text="Download"
-                            Style="{StaticResource iconBtnText}"/>
+                           Text="Download"
+                           Style="{StaticResource iconBtnText}"/>
+                </Grid>
+                <Grid Grid.Column="2" 
+                      RowDefinitions="Auto, Auto">
+                    <Ellipse Style="{StaticResource iconBg}"/>
+                    <Image Source="plus"
+                           Style="{StaticResource iconImg}">
+                        <Image.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="White" />
+                        </Image.Behaviors>
+                    </Image>
+                    <Label Grid.Row="1"
+                           Text="My List"
+                           Style="{StaticResource iconBtnText}"/>
                 </Grid>
 
-                <Grid Grid.Column="0" 
-                        RowDefinitions="Auto, Auto">
+                <Grid Grid.Column="3" 
+                      RowDefinitions="Auto, Auto">
                     <Ellipse Style="{StaticResource iconBg}"/>
-                    <Image Source="share.png"
-                                Style="{StaticResource iconImg}">
+                    <Image Source="share"
+                           Style="{StaticResource iconImg}">
+                        <Image.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="White" />
+                        </Image.Behaviors>
                     </Image>
                     <Label Grid.Row="1"
-                            Text="Share"
-                            Style="{StaticResource iconBtnText}"/>
+                           Text="Share"
+                           Style="{StaticResource iconBtnText}"/>
                 </Grid>
             </Grid>
 
             <BoxView HeightRequest="2"
                      BackgroundColor="#9d9d9d"
                      Color="#9d9d9d"
-                     Margin="5,0"/>
+                     Margin="5, 0"
+                     />
 
             <Grid ColumnDefinitions="Auto, *, Auto"
                   Padding="15"
                   ColumnSpacing="5">
-                <Grid Grid.Column="0">
+                <Grid  Grid.Column="0"
+                    HorizontalOptions="Center">
                     <Ellipse Stroke="White"
-                             HeightRequest="22"
-                             WidthRequest="22"
-                             StrokeThickness="2"/>
+                            HeightRequest="22"
+                            WidthRequest="22"
+                            StrokeThickness="2"/>
                     <Label Text="i"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"
-                           FontAttributes="Bold"/>
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontAttributes="Bold"/>
                 </Grid>
 
                 <Label Grid.Column="1"
@@ -160,7 +183,8 @@
         </VerticalStackLayout>
 
         <Border.GestureRecognizers>
-            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
         </Border.GestureRecognizers>
     </Border>
+
 </ContentView>
