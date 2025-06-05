@@ -1,5 +1,7 @@
 using NetflixCloneMaui.ViewModels;
 
+using NetflixCloneMaui.ViewModels;
+
 namespace NetflixCloneMaui.Pages;
 
 public partial class CategoriesPage : ContentPage
