@@ -23,22 +23,34 @@ namespace NetflixCloneMaui.Services
 
 		public async Task<IEnumerable<Genre>> GetGenresAsync()
 		{
-			var genresArray = await Task.WhenAll(
-				HttpClient.GetFromJsonAsync<IEnumerable<Genre>>($"{TmdbUrls.MovieGenres}&api_key={ApiKey}"),
-				HttpClient.GetFromJsonAsync<IEnumerable<Genre>>($"{TmdbUrls.TvGenres}&api_key={ApiKey}"));
+			var genresWrapper = await HttpClient.GetFromJsonAsync<GenreWrapper>($"{TmdbUrls.MovieGenres}&api_key={ApiKey}");
 
-			var genres = genresArray.SelectMany(g => g);
-			return genres;
+			return genresWrapper.Genres;
 		}
 
 		public async Task<IEnumerable<Media>> GetTrendingAsync() =>
-			await GetMediasAsync(TmdbUrls.Trending);
+	await GetMediasAsync(TmdbUrls.Trending);
+
 		public async Task<IEnumerable<Media>> GetTopRatedAsync() =>
 			await GetMediasAsync(TmdbUrls.TopRated);
 		public async Task<IEnumerable<Media>> GetNetflixOriginalAsync() =>
-	await GetMediasAsync(TmdbUrls.NetflixOriginals);
+			await GetMediasAsync(TmdbUrls.NetflixOriginals);
 		public async Task<IEnumerable<Media>> GetActionAsync() =>
-	await GetMediasAsync(TmdbUrls.Action);
+			await GetMediasAsync(TmdbUrls.Action);
+
+		public async Task<IEnumerable<Video>?> GetTrailersAsync(int id, string type = "movie")
+		{
+			var videosWrapper = await HttpClient.GetFromJsonAsync<VideosWrapper>(
+				$"{TmdbUrls.GetTrailers(id, type)}&api_key={ApiKey}");
+
+			if (videosWrapper?.results?.Length > 0)
+			{
+				var trailerTeasers = videosWrapper.results.Where(VideosWrapper.FilterTrailerTeasers);
+				return trailerTeasers;
+			}
+			return null;
+		}
+
 		private async Task<IEnumerable<Media>> GetMediasAsync(string url)
 		{
 			var trendingMoviesCollection = await HttpClient.GetFromJsonAsync<Movie>($"{url}&api_key={ApiKey}");
@@ -54,7 +66,6 @@ namespace NetflixCloneMaui.Services
 		public const string TopRated = "3/movie/top_rated?language=en-US";
 		public const string Action = "3/discover/movie?language=en-US&with_genres=28";
 		public const string MovieGenres = "3/genre/movie/list?language=en-US";
-		public const string TvGenres = "3/genre/tv/list?language=en-US";
 
 
 		public static string GetTrailers(int movieId, string type = "movie") => $"3/{type ?? "movie"}/{movieId}/videos?language=en-US";

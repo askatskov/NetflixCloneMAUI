@@ -14,7 +14,7 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
 			.UseMauiCommunityToolkit()
-            .ConfigureFonts(fonts =>
+			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
 				fonts.AddFont("Poppins-Semibold.ttf", "PoppinsSemibold");
@@ -24,18 +24,18 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-        builder.Services.AddHttpClient(TmdbService.TmdbHttpClientName,
-            httpClient => httpClient.BaseAddress = new Uri("https://api.themoviedb.org"));
+		builder.Services.AddHttpClient(TmdbService.TmdbHttpClientName,
+			httpClient => httpClient.BaseAddress = new Uri("https://api.themoviedb.org"));
 
-
-        builder.Services.AddSingleton<TmdbService>();
-        builder.Services.AddSingleton<MainPage>();
+		builder.Services.AddSingleton<TmdbService>();
 		builder.Services.AddSingleton<HomeViewModel>();
+		builder.Services.AddSingleton<MainPage>();
 
-		builder.Services.AddSingleton<CategoriesPage>();
 		builder.Services.AddSingleton<CategoriesViewModel>();
+		builder.Services.AddSingleton<CategoriesPage>();
 
 		builder.Services.AddTransientWithShellRoute<DetailsPage, DetailsViewModel>(nameof(DetailsPage));
+
 		return builder.Build();
 	}
 }
