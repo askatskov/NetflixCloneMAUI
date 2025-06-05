@@ -3,16 +3,14 @@
              xmlns:models="clr-namespace:NetflixCloneMaui.Models"
              xmlns:controls="clr-namespace:NetflixCloneMaui.Controls"
              x:Class="NetflixCloneMaui.Controls.MovieRow"
-             x:Name="this"
-             >
+             x:Name="this">
     <VerticalStackLayout BackgroundColor="Black"
                          BindingContext="{x:Reference this}">
         <Label Text="{Binding Heading}"
                FontAttributes="Bold"
                FontSize="16"
                HorizontalTextAlignment="Start"
-               Margin="10, 15, 0, 5"
-               />
+               Margin="10, 15, 0, 5"/>
 
         <CollectionView ItemsSource="{Binding Movies}">
             <CollectionView.ItemsLayout>
@@ -25,15 +23,15 @@
                             Stroke="Black"
                             StrokeThickness="1">
                         <Border.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type controls:MovieRow}}, Path=MediaDetailsCommand}"
+                            <TapGestureRecognizer Command ="{Binding Source={RelativeSource AncestorType= {x:Type controls:MovieRow}}, Path=MediaDetailsCommand}"
                                                   CommandParameter="{Binding .}"/>
                         </Border.GestureRecognizers>
                         <Grid>
                             <Image Aspect="AspectFill"
                                HeightRequest="150"
                                WidthRequest="120"
-                               IsVisible="{Binding Source={RelativeSource AncestorType={x:Type controls:MovieRow}}, Path=IsNotLarge}"
-                               >
+                               IsVisible="{Binding Source={RelativeSource AncestorType= {x:Type controls:MovieRow}}, Path=IsNotLarge}">
+
                                 <Image.Source>
                                     <UriImageSource Uri="{Binding ThumbnailSmall}"/>
                                 </Image.Source>
@@ -41,10 +39,10 @@
                             <Image Aspect="AspectFill"
                                HeightRequest="200"
                                WidthRequest="150"
-                               IsVisible="{Binding Source={RelativeSource AncestorType={x:Type controls:MovieRow}}, Path=IsLarge}"
-                               >
+                               IsVisible="{Binding Source={RelativeSource AncestorType= {x:Type controls:MovieRow}}, Path=IsLarge}">
+
                                 <Image.Source>
-                                    <UriImageSource Uri="{Binding ThumbnailSmall}"/>
+                                    <UriImageSource Uri="{Binding Thumbnail}"/>
                                 </Image.Source>
                             </Image>
                         </Grid>
@@ -52,6 +50,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        
+
     </VerticalStackLayout>
 </ContentView>
